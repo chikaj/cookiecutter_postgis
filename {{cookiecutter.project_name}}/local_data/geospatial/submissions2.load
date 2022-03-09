@@ -1,0 +1,17 @@
+LOAD CSV
+   FROM ALL FILENAMES MATCHING ~[.txt] IN DIRECTORY '2021.06.28' WITH ENCODING utf-8
+        HAVING FIELDS
+        (
+            mission,e,number,blank,year,month,day,hour,minute,seconds,iss_lat,iss_lon,photo_lat,photo_lon,location,features,cloud_cover,focal_length,tilt,camera,film_type,azimuth,elevation,altitude,look_direction
+        )
+   INTO postgresql://hippo:datalake@postgis:5432/ceo
+        TARGET TABLE staging.submission
+        TARGET COLUMNS
+        (
+            mission,e,number,blank,year,month,day,hour,minute,seconds,iss_lat,iss_lon,photo_lat,photo_lon,location,features,cloud_cover,focal_length,tilt,camera,film_type,azimuth,elevation,altitude,look_direction
+        )
+   WITH skip header = 0,
+        fields terminated by '\t'
+         
+    SET work_mem to '32 MB', maintenance_work_mem to '64 MB';
+

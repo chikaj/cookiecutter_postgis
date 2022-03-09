@@ -1,0 +1,15 @@
+{
+    "project_name": "My Super Cool Project",
+    "project_slug": "{{cookiecutter.project_name|lower|replace(' ', '_')}}",
+    "author": "Your name",
+    "postgis_port": "5555",
+    "pgadmin_port": "5050",
+    "tileserv_port": "7800",
+    "featureserv_port": "9000",
+    "postgres_superuser_password": "superpgpassword",
+    "postgres_primary_user": "duck",
+    "postgres_primary_password": "quack",
+    "postgres_primary_db": "geo",
+    "pgadmin_default_email": "duck@duck.com",
+    "pgadmin_default_password": "quack"
+}

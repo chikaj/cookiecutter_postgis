@@ -1,0 +1,98 @@
+version: '3.9'
+
+services:
+  postgis:
+    build:
+      context: ./.config/postgis 
+    image: {{cookiecutter.project_slug}}_postgis
+    container_name: {{cookiecutter.project_slug}}_postgis
+    # env_file: 
+    #   - ./.config/postgis/postgis.env 
+    volumes: 
+      - {{cookiecutter.project_slug}}_postgis_data:/var/lib/postgresql/data
+      - ./local_data/geospatial:/work
+    hostname: {{cookiecutter.project_slug}}_postgis
+    networks:
+      - {{cookiecutter.project_slug}}_network
+    ports: 
+      - {{cookiecutter.postgis_port}}:5432
+
+  pgadmin:
+    build:
+      context: ./.config/pgadmin4
+    image: {{cookiecutter.project_slug}}_pgadmin4
+    container_name: {{cookiecutter.project_slug}}_pgadmin4
+    # env_file: 
+    #   - ./.config/pgadmin4/pgadmin.env
+    volumes: 
+      - {{cookiecutter.project_slug}}_pgadmin4:/var/lib/pgadmin
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pgadmin4
+    networks: 
+      - {{cookiecutter.project_slug}}_network
+    ports: 
+      - {{cookiecutter.pgadmin_port}}:80
+
+  pgloader:
+    image: dimitri/pgloader:latest
+    working_dir: /work
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    container_name: {{cookiecutter.project_slug}}_pgloader
+    volumes: 
+      - ./local_data/geospatial:/work
+    hostname: {{cookiecutter.project_slug}}_pgloader
+    networks:
+      - {{cookiecutter.project_slug}}_network
+
+  gdal:
+    image: osgeo/gdal:alpine-small-latest
+    working_dir: /work
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    container_name: {{cookiecutter.project_slug}}_gdal
+    volumes: 
+      - ./local_data/geospatial:/work
+    hostname: {{cookiecutter.project_slug}}_gdal
+    networks:
+      - {{cookiecutter.project_slug}}_network
+
+  tileserver:
+    build: 
+      context: .
+      dockerfile: ./.config/pg_tileserv/Dockerfile
+    image: {{cookiecutter.project_slug}}_pg_tileserv
+    container_name: {{cookiecutter.project_slug}}_pg_tileserv
+    env_file: 
+      - ./.config/pg_serv.env
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pg_tileserv
+    networks: 
+      - {{cookiecutter.project_slug}}_network
+    ports: 
+      - {{cookiecutter.tileserv_port}}:7800
+
+  featureserver:
+    build: 
+      context: .
+      dockerfile: ./.config/pg_featureserv/Dockerfile
+    image: {{cookiecutter.project_slug}}_pg_featureserv
+    container_name: {{cookiecutter.project_slug}}_pg_featureserv
+    env_file: 
+      - ./.config/pg_serv.env
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pg_featureserv
+    networks: 
+      - {{cookiecutter.project_slug}}_network
+    ports: 
+      - {{cookiecutter.featureserv_port}}:9000
+
+networks: 
+  {{cookiecutter.project_slug}}_network:
+
+volumes: 
+  {{cookiecutter.project_slug}}_postgis_data:
+  {{cookiecutter.project_slug}}_pgadmin4:
