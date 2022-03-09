@@ -6,8 +6,8 @@ services:
       context: ./.config/postgis 
     image: {{cookiecutter.project_slug}}_postgis
     container_name: {{cookiecutter.project_slug}}_postgis
-    # env_file: 
-    #   - ./.config/postgis/postgis.env 
+    env_file: 
+      - ./.config/postgis/postgis.env 
     volumes: 
       - {{cookiecutter.project_slug}}_postgis_data:/var/lib/postgresql/data
       - ./local_data/geospatial:/work
@@ -22,8 +22,8 @@ services:
       context: ./.config/pgadmin4
     image: {{cookiecutter.project_slug}}_pgadmin4
     container_name: {{cookiecutter.project_slug}}_pgadmin4
-    # env_file: 
-    #   - ./.config/pgadmin4/pgadmin.env
+    env_file: 
+      - ./.config/pgadmin4/pgadmin.env
     volumes: 
       - {{cookiecutter.project_slug}}_pgadmin4:/var/lib/pgadmin
     depends_on:
