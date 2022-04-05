@@ -14,8 +14,12 @@ directories are available.
 ## Mapping
 
 
-## (Full Course)[https://github.com/chikaj/cookiecutter_postgis/tree/main/full_course]
-
+## Full Course
+(full_course)[https://github.com/chikaj/cookiecutter_postgis/tree/main/full_course]
+Contains:
+* everything from Mapping, 
+* gdal
+* pgloader
 
 ## GraphQL
 
