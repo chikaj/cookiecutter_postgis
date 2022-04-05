@@ -1,6 +1,6 @@
 # Cookiecutters for setting up PostgreSQL/PostGIS Docker files
 
-This repository contains (cookiecutters)[https://github.com/cookiecutter/cookiecutter] for creating 
+This repository contains [cookiecutters](https://github.com/cookiecutter/cookiecutter) for creating 
 PostgreSQL/PostGIS Dockerfiles and a docker-compose.yml file. The parameters of the created files
 come from user input. Each of the directories in the repository create unique setups. The following 
 directories are available.
@@ -15,7 +15,7 @@ directories are available.
 
 
 ## Full Course
-(full_course)[https://github.com/chikaj/cookiecutter_postgis/tree/main/full_course]
+[full_course](https://github.com/chikaj/cookiecutter_postgis/tree/main/full_course)
 Contains:
 * everything from Mapping, 
 * gdal
