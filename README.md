@@ -14,7 +14,7 @@ directories are available.
 ## Mapping
 
 
-## Full Course
+## (Full Course)[https://github.com/chikaj/cookiecutter_postgis/tree/main/full_course]
 
 
 ## GraphQL
