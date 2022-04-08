@@ -1,0 +1,13 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "{{cookiecutter.project_name}} PostGIS Server",
+            "Group": "{{cookiecutter.project_name}} Spatial Databases",
+            "Host": "{{cookiecutter.project_name}}_postgis",
+            "Port": 5432,
+            "MaintenanceDB": "{{cookiecutter.postgres_primary_db}}",
+            "Username": "{{cookiecutter.postgres_primary_user}}",
+            "SSLMode": "prefer"
+        }
+    }
+}
