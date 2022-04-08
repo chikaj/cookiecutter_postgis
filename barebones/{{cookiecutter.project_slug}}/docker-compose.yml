@@ -17,23 +17,6 @@ services:
     ports: 
       - {{cookiecutter.postgis_port}}:5432
 
-  pgadmin:
-    build:
-      context: ./.config/pgadmin4
-    image: {{cookiecutter.project_slug}}_pgadmin4
-    container_name: {{cookiecutter.project_slug}}_pgadmin4
-    env_file: 
-      - ./.config/pgadmin4/pgadmin.env
-    volumes: 
-      - {{cookiecutter.project_slug}}_pgadmin4:/var/lib/pgadmin
-    depends_on:
-      - postgis
-    hostname: {{cookiecutter.project_slug}}_pgadmin4
-    networks: 
-      - {{cookiecutter.project_slug}}_network
-    ports: 
-      - {{cookiecutter.pgadmin_port}}:80
-
 networks: 
   {{cookiecutter.project_slug}}_network:
 
