@@ -20,7 +20,6 @@ for DB in "{{cookiecutter.postgres_primary_db}}"; do
 		CREATE EXTENSION IF NOT EXISTS postgis SCHEMA postgis;
 		CREATE EXTENSION IF NOT EXISTS postgis_raster SCHEMA postgis;
 		CREATE EXTENSION IF NOT EXISTS postgis_topology SCHEMA topology;
-		CREATE EXTENSION IF NOT EXISTS plpython3u;
 	EOSQL
 
 	psql --dbname={{cookiecutter.postgres_primary_db}} <<-'EOSQL'
