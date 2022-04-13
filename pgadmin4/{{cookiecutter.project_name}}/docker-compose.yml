@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  pgadmin:
+    build:
+      context: ./.config/pgadmin4
+    image: {{cookiecutter.project_slug}}_pgadmin4
+    container_name: {{cookiecutter.project_slug}}_pgadmin4
+    env_file: 
+      - ./.config/pgadmin4/pgadmin.env
+    volumes: 
+      - pgadmin4:/var/lib/pgadmin
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pgadmin4
+    networks: 
+      - pgadmin4_network
+    ports: 
+      - {{cookiecutter.pgadmin_port}}:80
+
+networks: 
+  pgadmin4_network:
+
+volumes: 
+  pgadmin4:
