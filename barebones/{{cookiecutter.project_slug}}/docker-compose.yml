@@ -9,17 +9,16 @@ services:
     env_file: 
       - ./.config/postgis/postgis.env 
     volumes: 
-      - {{cookiecutter.project_slug}}_postgis_data:/var/lib/postgresql/data
+      - postgis_data:/var/lib/postgresql/data
       - ./local_data/geospatial:/work
     hostname: {{cookiecutter.project_slug}}_postgis
     networks:
-      - {{cookiecutter.project_slug}}_network
+      - barebones_network
     ports: 
       - {{cookiecutter.postgis_port}}:5432
 
 networks: 
-  {{cookiecutter.project_slug}}_network:
+  barebones_network:
 
 volumes: 
-  {{cookiecutter.project_slug}}_postgis_data:
-  {{cookiecutter.project_slug}}_pgadmin4:
+  postgis_data:
