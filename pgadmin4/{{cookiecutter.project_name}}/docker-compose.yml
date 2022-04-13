@@ -10,8 +10,6 @@ services:
       - ./.config/pgadmin4/pgadmin.env
     volumes: 
       - pgadmin4:/var/lib/pgadmin
-    depends_on:
-      - postgis
     hostname: {{cookiecutter.project_slug}}_pgadmin4
     networks: 
       - pgadmin4_network
