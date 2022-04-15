@@ -16,6 +16,7 @@ services:
       - barebones_network
     ports: 
       - {{cookiecutter.postgis_port}}:5432
+    working_dir: /work
 
   pgadmin:
     build:
