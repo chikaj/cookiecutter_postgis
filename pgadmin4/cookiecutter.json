@@ -1,8 +1,0 @@
-{
-    "project_name": "My Super Cool Project",
-    "project_slug": "{{cookiecutter.project_name|lower|replace(' ', '_')}}",
-    "author": "Your name",
-    "pgadmin_port": "5050",
-    "pgadmin_default_email": "duck@duck.com",
-    "pgadmin_default_password": "quack"
-}
