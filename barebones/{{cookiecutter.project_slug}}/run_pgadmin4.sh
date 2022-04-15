@@ -1,1 +1,0 @@
-docker run --rm -e PGADMIN_DEFAULT_EMAIL="duck@duck.com" -e PGADMIN_DEFAULT_PASSWORD="quack" -p 5050:80 --name pgadm -d dpage/pgadmin4:6.8
