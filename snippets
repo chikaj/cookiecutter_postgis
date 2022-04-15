@@ -1,0 +1,4 @@
+docker run --rm -e POSTGRES_PASSWORD=quack -e POSTGRES_USER=duck -p 5556:5432 -d --name what postgis/postgis:14-3.2
+docker exec -it what bash
+
+docker run --rm -e PGADMIN_DEFAULT_EMAIL="duck@duck.com" -e PGADMIN_DEFAULT_PASSWORD="quack" -p 5050:80 --name pgadm -d dpage/pgadmin4:6.8

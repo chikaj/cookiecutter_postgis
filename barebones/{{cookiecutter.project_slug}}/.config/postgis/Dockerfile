@@ -15,6 +15,12 @@ RUN set -ex \
  && apt-get install -y --no-install-recommends \
         postgresql-14-pgrouting \
         postgresql-14-pgrouting-scripts \
+ && apt-cache showpkg pgloader \
+ && apt-get install -y --no-install-recommends \
+        pgloader \
+ && apt-cache showpkg gdal-bin \
+ && apt-get install -y --no-install-recommends \
+        gdal-bin \
  && rm -rf /var/lib/apt/lists/*
 RUN echo '#!/bin/bash\n/usr/bin/python3' > /usr/bin/python \
     && chmod +x /usr/bin/python \ 
