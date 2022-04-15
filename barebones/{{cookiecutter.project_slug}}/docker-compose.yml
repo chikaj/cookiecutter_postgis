@@ -25,7 +25,7 @@ services:
     env_file: 
       - ./.config/pgadmin4/pgadmin.env
     volumes: 
-      - {{cookiecutter.project_slug}}_pgadmin4:/var/lib/pgadmin
+      - pgadmin4_data:/var/lib/pgadmin
     depends_on:
       - postgis
     hostname: {{cookiecutter.project_slug}}_pgadmin4
@@ -39,3 +39,4 @@ networks:
 
 volumes: 
   postgis_data:
+  pgadmin4_data:
