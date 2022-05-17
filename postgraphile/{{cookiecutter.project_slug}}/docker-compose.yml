@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  postgis:
+    build:
+      context: ./.config/postgis 
+    image: {{cookiecutter.project_slug}}_postgis
+    container_name: {{cookiecutter.project_slug}}_postgis
+    env_file: 
+      - ./.config/postgis/postgis.env 
+    volumes: 
+      - postgis_data:/var/lib/postgresql/data
+      - ./data:/work
+    hostname: {{cookiecutter.project_slug}}_postgis
+    networks:
+      - postgraphile_network
+    ports: 
+      - {{cookiecutter.postgis_port}}:5432
+    working_dir: /work
+
+  pgadmin:
+    build:
+      context: ./.config/pgadmin4
+    image: {{cookiecutter.project_slug}}_pgadmin4
+    container_name: {{cookiecutter.project_slug}}_pgadmin4
+    env_file: 
+      - ./.config/pgadmin4/pgadmin.env
+    volumes: 
+      - pgadmin4_data:/var/lib/pgadmin
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pgadmin4
+    networks: 
+      - postgraphile_network
+    ports: 
+      - {{cookiecutter.pgadmin_port}}:80
+
+  postgraphile:
+    build:
+      context: ./.config/postgraphile
+    image: {{cookiecutter.project_slug}}_postgraphile
+    container_name: {{cookiecutter.project_slug}}_postgraphile
+    env_file:
+      - ./.config/postgraphile/pg.env
+      - ./.config/postgraphile/postgraphile.env
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_postgraphile
+    networks:
+      - postgraphile_network
+    ports:
+      - {{cookiecutter.postgraphile_port}}:5433
+
+networks: 
+  postgraphile_network:
+
+volumes: 
+  postgis_data:
+  pgadmin4_data:
