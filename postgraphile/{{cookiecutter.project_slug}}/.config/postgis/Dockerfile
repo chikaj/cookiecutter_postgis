@@ -27,5 +27,4 @@ RUN echo '#!/bin/bash\n/usr/bin/python3' > /usr/bin/python \
     && echo '#!/bin/bash\n/usr/bin/pip3' > /usr/bin/pip \
     && chmod +x /usr/bin/pip
 RUN rm /docker-entrypoint-initdb.d/10_postgis.sh
-COPY init-user-db.sh /docker-entrypoint-initdb.d/10-init-user-db.sh
-COPY initdb-postgis.sh /docker-entrypoint-initdb.d/11-initdb-postgis.sh
+COPY ./init /docker-entrypoint-initdb.d/

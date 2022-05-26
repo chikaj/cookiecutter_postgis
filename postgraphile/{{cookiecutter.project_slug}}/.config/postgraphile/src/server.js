@@ -1,12 +1,13 @@
 const http = require("http");
 const { postgraphile } = require("postgraphile");
-
+/*
 const db_url = "postgres://" + 
                process.env.POSTGRES_USER + ":" +
                process.env.POSTGRES_PASSWORD + "@" +
                process.env.POSTGRES_HOST + ":" +
                process.env.POSTGRES_PORT + "/" +
                process.env.POSTGRES_DB;
+*/
 
 http
   .createServer(
@@ -17,9 +18,9 @@ http
       graphiql: true,
       enhanceGraphiql: true,
       retryOnInitFail: true,
-      pgDefaultRole: 'forum_example_anonymous',
+      pgDefaultRole: 'guest',
       jwtSecret: 'aGreatBigJWTSecret',
-      jwtPgTypeIdentifier: 'forum_example.jwt_token',
+      jwtPgTypeIdentifier: 'app_public.jwt_token',
     })
   )
   .listen(process.env.GRAPHQL_PORT);
