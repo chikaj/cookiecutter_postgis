@@ -1,3 +1,3 @@
-FROM dpage/pgadmin4:6.9
+FROM dpage/pgadmin4:6.11
 
 COPY servers.json /pgadmin4/servers.json
