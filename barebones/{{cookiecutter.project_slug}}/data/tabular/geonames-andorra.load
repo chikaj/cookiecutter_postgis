@@ -4,8 +4,8 @@ LOAD CSV
         (
             geonameid,name,asciiname,alternatenames,latitude,longitude,feature_class,feature_code,country_code,cc2,admin1_code,admin2_code,admin3_code,admin4_code,population,elevation,dem,timezone,modification_date
         )
-   INTO postgresql://hippo:datalake@localhost:5555/ceo
-        TARGET TABLE public.test
+   INTO postgresql://duck:quack@localhost:5432/geo
+        TARGET TABLE public.ad
         TARGET COLUMNS
         (
             geonameid,name,asciiname,alternatenames,latitude,longitude,feature_class,feature_code,country_code,cc2,admin1_code,admin2_code,admin3_code,admin4_code,population,elevation,dem,timezone,modification_date
@@ -17,8 +17,8 @@ LOAD CSV
     SET work_mem to '32 MB', maintenance_work_mem to '64 MB'
 
 BEFORE LOAD DO
-    $$ drop table if exists public.test; $$,
-    $$ create table public.test (
+    $$ drop table if exists public.ad; $$,
+    $$ create table public.ad (
         geonameid integer,
         name varchar(200),
         asciiname varchar(200),
