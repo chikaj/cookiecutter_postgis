@@ -4,6 +4,9 @@ LABEL maintainer="{{cookiecutter.author}}"
 
 RUN set -ex \
  && apt-get update \
+ && apt-cache showpkg postgis \
+ && apt-get install -y --no-install-recommends \
+        postgis \
  && apt-cache showpkg python3 \
  && apt-get install -y --no-install-recommends \
         python3 \
