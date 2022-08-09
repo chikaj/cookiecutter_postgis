@@ -11,15 +11,15 @@ gdal_translate -co TILING_SCHEME=GoogleMapsCompatible -co COMPRESS=DEFLATE -co L
 
 ## Import raster: soon to be available with GDAL 3.4
 ```
-raster2pgsql -s 32632 -t 256x256 -C -r -P -M -I -R -F -n filename concise_tif.tif concise_tif | psql postgresql://duck:quack@localhost:5432/geo
+raster2pgsql -t 256x256 -C -r -P -M -I -R -F /work/geospatial/raster/concise_tif.tif concise_tif | psql postgresql://duck:quack@localhost:5432/geo
 ```
 * -R # register the table as 'out-db' raster
 * See [here](https://postgis.net/docs/using_raster_dataman.html#RT_Raster_Loader) for description of all raster2pgsql flags
-* (Optional) Replace 'concise.tif' with '/vsicurl/https://url.com/bucket-storage/concise.tif'
+* (Optional) Replace '/work/geospatial/raster/concise.tif' with '/vsicurl/https://url.com/bucket-storage/concise.tif'
 
-## GeoTIFF export
+## GeoTIFF creation
 ```
-SELECT ST_AsTIFF(rast, 'JPEG90') As rasttiff
+SELECT ST_AsTIFF(rast, 'LZW') As rasttiff
 FROM concise_tif;
 ```
 
