@@ -11,7 +11,7 @@ gdal_translate -co TILING_SCHEME=GoogleMapsCompatible -co COMPRESS=DEFLATE -co L
 
 ## Import raster: soon to be available with GDAL 3.4
 ```
-raster2pgsql -s 32632 -t 256x256 -C -r -P -M -I -R concise_tif.tif concise_tif | psql postgresql://duck:quack@localhost:5432/geo
+raster2pgsql -s 32632 -t 256x256 -C -r -P -M -I -R -F -n filename concise_tif.tif concise_tif | psql postgresql://duck:quack@localhost:5432/geo
 ```
 * -R # register the table as 'out-db' raster
 * See [here](https://postgis.net/docs/using_raster_dataman.html#RT_Raster_Loader) for description of all raster2pgsql flags
@@ -19,7 +19,8 @@ raster2pgsql -s 32632 -t 256x256 -C -r -P -M -I -R concise_tif.tif concise_tif |
 
 ## GeoTIFF export
 ```
-ogr2ogr -f "ESRI Shapefile" polygons.shp "PG:user=duck password=quack host=localhost port=5432 dbname=geo" public.capcog
+SELECT ST_AsTIFF(rast, 'JPEG90') As rasttiff
+FROM concise_tif;
 ```
 
 ## See:
