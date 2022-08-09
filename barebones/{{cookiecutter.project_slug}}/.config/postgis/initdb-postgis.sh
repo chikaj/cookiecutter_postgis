@@ -19,6 +19,9 @@ for DB in "{{cookiecutter.postgres_primary_db}}"; do
 	psql --dbname={{cookiecutter.postgres_primary_db}} --username={{cookiecutter.postgres_primary_user}} <<-'EOSQL'
 		CREATE EXTENSION IF NOT EXISTS postgis SCHEMA postgis;
 		CREATE EXTENSION IF NOT EXISTS postgis_raster SCHEMA postgis;
+	EOSQL
+
+	psql --dbname={{cookiecutter.postgres_primary_db}} --username={{cookiecutter.postgres_primary_user}} <<-'EOSQL'
 		CREATE EXTENSION IF NOT EXISTS postgis_topology SCHEMA topology;
 	EOSQL
 
