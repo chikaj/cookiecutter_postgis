@@ -1,0 +1,68 @@
+version: '3.9'
+
+services:
+  postgis:
+    build:
+      context: ./.config/postgis 
+    image: {{cookiecutter.project_slug}}_postgis
+    container_name: {{cookiecutter.project_slug}}_postgis
+    env_file: 
+      - ./.config/postgis/postgis.env 
+    volumes: 
+      - postgis_data:/var/lib/postgresql/data
+      - ./data:/work
+    hostname: {{cookiecutter.project_slug}}_postgis
+    networks:
+      - postgrest_network
+    ports: 
+      - {{cookiecutter.postgis_port}}:5432
+    working_dir: /work
+
+  pgadmin:
+    build:
+      context: ./.config/pgadmin4
+    image: {{cookiecutter.project_slug}}_pgadmin4
+    container_name: {{cookiecutter.project_slug}}_pgadmin4
+    env_file: 
+      - ./.config/pgadmin4/pgadmin.env
+    volumes: 
+      - pgadmin4_data:/var/lib/pgadmin
+      # - ./data/pgadmin4sql:/var/lib/pgadmin/storage
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pgadmin4
+    networks: 
+      - postgrest_network
+    ports: 
+      - {{cookiecutter.pgadmin_port}}:80
+  
+  postgrest:
+    build:
+      context: ./.config/postgrest
+    image: postgrest/postgrest
+    container_name: {{cookiecutter.project_slug}}_postgrest
+    env_file:
+      - ./.config/postgrest/postgrest.env
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_postgrest
+    networks:
+      - postgrest_network
+    ports:
+      - {{cookiecutter.project_slug}}:3000
+  
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      API_URL: http://localhost:3000/
+
+networks: 
+  postgrest_network:
+
+volumes: 
+  postgis_data:
+  pgadmin4_data:
