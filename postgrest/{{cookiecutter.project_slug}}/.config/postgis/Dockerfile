@@ -11,13 +11,13 @@ RUN set -ex \
  && apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
- && apt-cache showpkg postgresql-plpython3-14 \
+ && apt-cache showpkg postgresql-plpython3-15 \
  && apt-get install -y --no-install-recommends \
-        postgresql-plpython3-14 \
- && apt-cache showpkg postgresql-14-pgrouting \
+        postgresql-plpython3-15 \
+ && apt-cache showpkg postgresql-15-pgrouting \
  && apt-get install -y --no-install-recommends \
-        postgresql-14-pgrouting \
-        postgresql-14-pgrouting-scripts \
+        postgresql-15-pgrouting \
+        postgresql-15-pgrouting-scripts \
  && apt-cache showpkg pgloader \
  && apt-get install -y --no-install-recommends \
         pgloader \
