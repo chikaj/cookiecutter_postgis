@@ -13,6 +13,6 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     CREATE ROLE {{cookiecutter.postgrest_anonymous_role}} NOLOGIN;
     CREATE ROLE {{cookiecutter.postgrest_authenticator_role}} NOINHERIT LOGIN PASSWORD '{{cookiecutter.postgrest_authenticator_password}}';
     GRANT {{cookiecutter.postgrest_anonymous_role}} to {{cookiecutter.postgrest_authenticator_role}};
-    CREATE SCHEMA api;
-    GRANT USAGE ON SCHEMA api TO {{cookiecutter.postgrest_anonymous_role}};
+    CREATE SCHEMA {{cookiecutter.postgres_primary_db}}.api;
+    GRANT USAGE ON SCHEMA {{cookiecutter.postgres_primary_db}}.api TO {{cookiecutter.postgrest_anonymous_role}};
 EOSQL
