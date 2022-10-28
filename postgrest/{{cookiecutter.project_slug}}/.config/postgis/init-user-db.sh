@@ -8,7 +8,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     GRANT ALL PRIVILEGES ON DATABASE {{cookiecutter.postgres_primary_db}} TO {{cookiecutter.postgres_primary_user}};
 EOSQL
 
-echo "Creating PostgREST authenticator and anonymous users and API Schema
+echo "Creating PostgREST authenticator and anonymous users and API Schema"
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     CREATE ROLE {{cookiecutter.postgrest_anonymous_role}} NOLOGIN;
     CREATE ROLE {{cookiecutter.postgrest_authenticator_role}} NOINHERET LOGIN PASSWORD '{{cookiecutter.postgrest_authenticator_password}}';
