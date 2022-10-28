@@ -9,5 +9,8 @@
     "postgres_primary_db": "geo",
     "pgadmin_default_email": "duck@duck.com",
     "pgadmin_default_password": "quack",
-    "pgadmin_port": "5050"
+    "pgadmin_port": "5050",
+    "postgrest_authenticator_role": "authenticator",
+    "postgrest_authenticator_password": "supersecretauthenticatorpassword",
+    "postgrest_anonymous_role": "anonymous"
 }

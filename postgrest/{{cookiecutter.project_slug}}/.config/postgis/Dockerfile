@@ -1,4 +1,4 @@
-FROM postgis/postgis:14-3.2
+FROM postgis/postgis:15-3.3
 
 LABEL maintainer="{{cookiecutter.author}}"
 
