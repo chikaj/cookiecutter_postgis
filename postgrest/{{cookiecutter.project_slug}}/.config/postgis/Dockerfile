@@ -17,7 +17,7 @@ RUN set -ex \
 
 RUN git clone https://github.com/michelp/pgjwt.git
 
-RUN cd pgjwt
+RUN cd pgjwt && pwd
 
 RUN make install
 
