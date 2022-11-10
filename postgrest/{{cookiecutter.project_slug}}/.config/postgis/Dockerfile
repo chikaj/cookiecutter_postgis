@@ -1,12 +1,29 @@
+FROM postgis/postgis:15-3.3 AS build
+
+WORKDIR /tmpbuild
+
+RUN set -ex \
+ && apt-get update \
+ && apt-cache showpkg git \
+ && apt-get install -y --no-install-recommends \
+        git \
+ && apt-cache showpkg postgresql-server-dev-15 \
+ && apt-get install -y --no-install-recommends \
+        postgresql-server-dev-15 \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/michelp/pgjwt.git && cd pgjwt
+
+RUN make install
+
 FROM postgis/postgis:15-3.3
 
 LABEL maintainer="{{cookiecutter.author}}"
 
+COPY --from=build /usr/share/postgresql/15/extension/pgjwt* /usr/share/postgresql/15/extension/
+
 RUN set -ex \
  && apt-get update \
- && apt-cache showpkg postgis \
- && apt-get install -y --no-install-recommends \
-        postgis \
  && apt-cache showpkg python3 \
  && apt-get install -y --no-install-recommends \
         python3 \
