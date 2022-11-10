@@ -1,23 +1,42 @@
-FROM postgis/postgis:14-3.2
-
-LABEL maintainer="{{cookiecutter.author}}"
+FROM postgis/postgis:15-3.3 AS build
 
 RUN set -ex \
  && apt-get update \
- && apt-cache showpkg postgis \
+ && apt-cache showpkg git \
  && apt-get install -y --no-install-recommends \
-        postgis \
+        git \
+ && apt-cache showpkg make \
+ && apt-get install -y --no-install-recommends \
+        make \
+ && apt-cache showpkg postgresql-server-dev-15 \
+ && apt-get install -y --no-install-recommends \
+        postgresql-server-dev-15 \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/michelp/pgjwt.git
+
+WORKDIR /pgjwt
+RUN make install
+
+FROM postgis/postgis:15-3.3
+
+LABEL maintainer="{{cookiecutter.author}}"
+
+COPY --from=build /usr/share/postgresql/15/extension/pgjwt* /usr/share/postgresql/15/extension/
+
+RUN set -ex \
+ && apt-get update \
  && apt-cache showpkg python3 \
  && apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
- && apt-cache showpkg postgresql-plpython3-14 \
+ && apt-cache showpkg postgresql-plpython3-15 \
  && apt-get install -y --no-install-recommends \
-        postgresql-plpython3-14 \
- && apt-cache showpkg postgresql-14-pgrouting \
+        postgresql-plpython3-15 \
+ && apt-cache showpkg postgresql-15-pgrouting \
  && apt-get install -y --no-install-recommends \
-        postgresql-14-pgrouting \
-        postgresql-14-pgrouting-scripts \
+        postgresql-15-pgrouting \
+        postgresql-15-pgrouting-scripts \
  && apt-cache showpkg pgloader \
  && apt-get install -y --no-install-recommends \
         pgloader \

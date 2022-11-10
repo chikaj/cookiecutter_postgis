@@ -8,9 +8,6 @@ directories are available.
 ## Barebones
 
 
-## Basic
-
-
 ## Mapping
 
 

@@ -1,3 +1,0 @@
-# Run the following from inside postgis container
-
-pg_dump -U duck geo > geo.sql
