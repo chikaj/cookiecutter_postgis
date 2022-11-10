@@ -38,15 +38,15 @@ services:
 
   pgloader:
     image: dimitri/pgloader:latest
-    working_dir: /work
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     container_name: {{cookiecutter.project_slug}}_pgloader
     volumes: 
-      - ./local_data/geospatial:/work
+      - ./data:/work
     hostname: {{cookiecutter.project_slug}}_pgloader
     networks:
       - barebones_network
+    working_dir: /work
 
 networks: 
   barebones_network:
