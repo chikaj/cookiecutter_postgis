@@ -26,6 +26,11 @@ Contains:
 
 ## Spatial GraphQL
 
+## PostgREST
+
+Run from a branch, in this case 'dev'
+cookiecutter https://github.com/chikaj/cookiecutter_postgis --checkout dev --directory="postgrest"
+
 
 
 The cookiecutter command to create one of these setups is:

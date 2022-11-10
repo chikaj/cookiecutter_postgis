@@ -1,7 +1,5 @@
 FROM postgis/postgis:15-3.3 AS build
 
-WORKDIR /tmpbuild
-
 RUN set -ex \
  && apt-get update \
  && apt-cache showpkg git \
@@ -17,15 +15,14 @@ RUN set -ex \
 
 RUN git clone https://github.com/michelp/pgjwt.git
 
-# RUN cd pgjwt && pwd
-
-# RUN make install
+WORKDIR /pgjwt
+RUN make install
 
 FROM postgis/postgis:15-3.3
 
 LABEL maintainer="{{cookiecutter.author}}"
 
-# COPY --from=build /usr/share/postgresql/15/extension/pgjwt* /usr/share/postgresql/15/extension/
+COPY --from=build /usr/share/postgresql/15/extension/pgjwt* /usr/share/postgresql/15/extension/
 
 RUN set -ex \
  && apt-get update \
