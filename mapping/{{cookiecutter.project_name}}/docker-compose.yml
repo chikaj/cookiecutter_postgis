@@ -75,21 +75,21 @@ services:
     ports: 
       - {{cookiecutter.tileserv_port}}:7800
 
-  featureserver:
-    build: 
-      context: .
-      dockerfile: ./.config/pg_featureserv/Dockerfile
-    image: {{cookiecutter.project_slug}}_pg_featureserv
-    container_name: {{cookiecutter.project_slug}}_pg_featureserv
-    env_file: 
-      - ./.config/pg_serv.env
-    depends_on:
-      - postgis
-    hostname: {{cookiecutter.project_slug}}_pg_featureserv
-    networks: 
-      - mapping_network
-    ports: 
-      - {{cookiecutter.featureserv_port}}:9000
+  # featureserver:
+  #   build: 
+  #     context: .
+  #     dockerfile: ./.config/pg_featureserv/Dockerfile
+  #   image: {{cookiecutter.project_slug}}_pg_featureserv
+  #   container_name: {{cookiecutter.project_slug}}_pg_featureserv
+  #   env_file: 
+  #     - ./.config/pg_serv.env
+  #   depends_on:
+  #     - postgis
+  #   hostname: {{cookiecutter.project_slug}}_pg_featureserv
+  #   networks: 
+  #     - mapping_network
+  #   ports: 
+  #     - {{cookiecutter.featureserv_port}}:9000
 
 networks: 
   mapping_network:
