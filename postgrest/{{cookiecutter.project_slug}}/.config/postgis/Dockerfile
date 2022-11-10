@@ -15,7 +15,9 @@ RUN set -ex \
         postgresql-server-dev-15 \
  && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/michelp/pgjwt.git && cd pgjwt
+RUN git clone https://github.com/michelp/pgjwt.git
+
+RUN cd pgjwt
 
 RUN make install
 
