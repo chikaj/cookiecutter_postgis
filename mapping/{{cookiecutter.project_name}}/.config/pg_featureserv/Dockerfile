@@ -1,4 +1,4 @@
-FROM pramsey/pg_featureserv:20200408
+FROM pramsey/pg_featureserv:latest
 
 COPY ./.config/wait-for-it.sh /app/wait-for-it.sh
 USER root

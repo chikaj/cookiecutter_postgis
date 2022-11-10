@@ -1,4 +1,4 @@
-FROM pramsey/pg_tileserv:20201218
+FROM pramsey/pg_tileserv:latest
 
 COPY ./.config/wait-for-it.sh /app/wait-for-it.sh
 USER root
