@@ -7,6 +7,9 @@ RUN set -ex \
  && apt-cache showpkg git \
  && apt-get install -y --no-install-recommends \
         git \
+ && apt-cache showpkg make \
+ && apt-get install -y --no-install-recommends \
+        make \
  && apt-cache showpkg postgresql-server-dev-15 \
  && apt-get install -y --no-install-recommends \
         postgresql-server-dev-15 \
