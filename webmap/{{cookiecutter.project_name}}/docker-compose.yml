@@ -38,7 +38,7 @@ services:
   tileserver:
     build: 
       context: .
-      dockerfile: ./.config/pg_tileserv
+      dockerfile: ./.config/pg_tileserv/Dockerfile
     image: {{cookiecutter.project_slug}}_pg_tileserv
     container_name: {{cookiecutter.project_slug}}_pg_tileserv
     env_file: 
@@ -54,7 +54,7 @@ services:
   featureserver:
     build: 
       context: .
-      dockerfile: ./.config/pg_featureserv
+      dockerfile: ./.config/pg_featureserv/Dockerfile
     image: {{cookiecutter.project_slug}}_pg_featureserv
     container_name: {{cookiecutter.project_slug}}_pg_featureserv
     env_file: 
