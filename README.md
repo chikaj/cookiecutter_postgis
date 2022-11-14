@@ -8,10 +8,8 @@ directories are available.
 ## Barebones
 [full_course](https://github.com/chikaj/cookiecutter_postgis/tree/main/barebones)
 Contains:
-* PostGIS
+* PostGIS (with gdal and pgloader installed)
 * pgAdmin4 
-* gdal
-* pgloader
 
 ## Webmap
 [full_course](https://github.com/chikaj/cookiecutter_postgis/tree/main/webmap)
@@ -24,9 +22,7 @@ Contains:
 ## PostgREST
 [full_course](https://github.com/chikaj/cookiecutter_postgis/tree/main/postgrest)
 Contains:
-* (soon to be everything from Barebones, and then from Webmap)
-* PostGIS
-* pgAdmin4
+* (soon to be everything from Webmap)
 * postgREST
 * Swagger-UI
 
