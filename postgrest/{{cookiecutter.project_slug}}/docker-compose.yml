@@ -27,7 +27,6 @@ services:
       - ./.config/pgadmin4/pgadmin.env
     volumes: 
       - pgadmin4_data:/var/lib/pgadmin
-      # - ./data/pgadmin4sql:/var/lib/pgadmin/storage
     depends_on:
       - postgis
     hostname: {{cookiecutter.project_slug}}_pgadmin4
@@ -35,6 +34,38 @@ services:
       - postgrest_network
     ports: 
       - {{cookiecutter.pgadmin_port}}:80
+  
+  tileserver:
+    build: 
+      context: .
+      dockerfile: ./.config/pg_tileserv
+    image: {{cookiecutter.project_slug}}_pg_tileserv
+    container_name: {{cookiecutter.project_slug}}_pg_tileserv
+    env_file: 
+      - ./.config/pg_serv.env
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pg_tileserv
+    networks: 
+      - postgrest_network
+    ports: 
+      - {{cookiecutter.tileserv_port}}:7800
+
+  featureserver:
+    build: 
+      context: .
+      dockerfile: ./.config/pg_featureserv
+    image: {{cookiecutter.project_slug}}_pg_featureserv
+    container_name: {{cookiecutter.project_slug}}_pg_featureserv
+    env_file: 
+      - ./.config/pg_serv.env
+    depends_on:
+      - postgis
+    hostname: {{cookiecutter.project_slug}}_pg_featureserv
+    networks: 
+      - postgrest_network
+    ports: 
+      - {{cookiecutter.featureserv_port}}:9000
   
   postgrest:
     # build:
