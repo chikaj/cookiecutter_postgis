@@ -12,5 +12,7 @@
     "pgadmin_port": "5050",
     "postgrest_authenticator_role": "authenticator",
     "postgrest_authenticator_password": "supersecretauthenticatorpassword",
-    "postgrest_anonymous_role": "anonymous"
+    "postgrest_anonymous_role": "anonymous",
+    "tileserv_port": "7800",
+    "featureserv_port": "9000"
 }
