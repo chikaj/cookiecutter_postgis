@@ -96,4 +96,4 @@ networks:
 
 volumes: 
   postgis_data:
-  pgadmin4:
+  pgadmin4_data:
