@@ -18,7 +18,6 @@ Contains:
 * pg_tileserv
 * pg_featureserv
 
-
 ## PostgREST
 [full_course](https://github.com/chikaj/cookiecutter_postgis/tree/main/postgrest)
 Contains:
@@ -31,7 +30,9 @@ The cookiecutter command to create one of these setups is:
 
 `cookiecutter http://github.com/chikaj/cookiecutter_postgis --directory="replace_with__directory_name"`
 
-or if you want to use a branch:
+i.e., `cookiecutter https://github.com/chikaj/cookiecutter_postgis --directory="barebones"`
+
+or if you want to use a branch of the repository (mostly for testing purposes):
 
 `cookiecutter https://github.com/chikaj/cookiecutter_postgis --checkout branch_name --directory="replace_with__directory_name"`
 
