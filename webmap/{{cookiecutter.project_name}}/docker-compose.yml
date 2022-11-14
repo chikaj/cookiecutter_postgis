@@ -10,7 +10,7 @@ services:
       - ./.config/postgis/postgis.env 
     volumes: 
       - postgis_data:/var/lib/postgresql/data
-      - ./date:/work
+      - ./data:/work
     hostname: {{cookiecutter.project_slug}}_postgis
     networks:
       - mapping_network
@@ -35,29 +35,29 @@ services:
     ports: 
       - {{cookiecutter.pgadmin_port}}:80
 
-  pgloader:
-    image: dimitri/pgloader:latest
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
-    container_name: {{cookiecutter.project_slug}}_pgloader
-    volumes: 
-      - ./data:/work
-    hostname: {{cookiecutter.project_slug}}_pgloader
-    networks:
-      - mapping_network
-    working_dir: /work
+  # pgloader:
+  #   image: dimitri/pgloader:latest
+  #   stdin_open: true # docker run -i
+  #   tty: true        # docker run -t
+  #   container_name: {{cookiecutter.project_slug}}_pgloader
+  #   volumes: 
+  #     - ./data:/work
+  #   hostname: {{cookiecutter.project_slug}}_pgloader
+  #   networks:
+  #     - mapping_network
+  #   working_dir: /work
 
-  gdal:
-    image: osgeo/gdal:alpine-small-latest
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
-    container_name: {{cookiecutter.project_slug}}_gdal
-    volumes: 
-      - ./data:/work
-    hostname: {{cookiecutter.project_slug}}_gdal
-    networks:
-      - mapping_network
-    working_dir: /work
+  # gdal:
+  #   image: osgeo/gdal:alpine-small-latest
+  #   stdin_open: true # docker run -i
+  #   tty: true        # docker run -t
+  #   container_name: {{cookiecutter.project_slug}}_gdal
+  #   volumes: 
+  #     - ./data:/work
+  #   hostname: {{cookiecutter.project_slug}}_gdal
+  #   networks:
+  #     - mapping_network
+  #   working_dir: /work
 
   tileserver:
     build: 
