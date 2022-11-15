@@ -1,5 +1,7 @@
 FROM postgis/postgis:15-3.3 AS build
 
+LABEL maintainer="{{cookiecutter.author}}"
+
 RUN set -ex \
  && apt-get update \
  && apt-cache showpkg git \
