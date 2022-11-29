@@ -21,6 +21,5 @@ for DB in "{{cookiecutter.postgres_primary_db}}"; do
 		ALTER DATABASE {{cookiecutter.postgres_primary_db}} SET search_path = {{cookiecutter.postgres_primary_user}}, public, postgis, topology;
 		ALTER DATABASE {{cookiecutter.postgres_primary_db}} SET postgis.enable_outdb_rasters = true;
 		ALTER DATABASE {{cookiecutter.postgres_primary_db}} SET postgis.gdal_enabled_drivers TO 'ENABLE_ALL';
-		-- ALTER ROLE $PGUSER SET search_path=public,postgis;
 	EOSQL
 done
