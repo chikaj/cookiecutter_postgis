@@ -18,7 +18,7 @@ for DB in "{{cookiecutter.postgres_primary_db}}"; do
 	psql --dbname={{cookiecutter.postgres_primary_db}} --username={{cookiecutter.postgres_primary_user}} <<-'EOSQL'
 		CREATE EXTENSION IF NOT EXISTS postgis SCHEMA postgis;
 		CREATE EXTENSION IF NOT EXISTS postgis_raster SCHEMA postgis;
-		ALTER DATABASE {{cookiecutter.postgres_primary_db}} SET search_path = {{cookiecutter.postgres_primary_user}}, public, postgis, topology;
+		ALTER DATABASE {{cookiecutter.postgres_primary_db}} SET search_path = "$user", public, postgis;
 		ALTER DATABASE {{cookiecutter.postgres_primary_db}} SET postgis.enable_outdb_rasters = true;
 		ALTER DATABASE {{cookiecutter.postgres_primary_db}} SET postgis.gdal_enabled_drivers TO 'ENABLE_ALL';
 	EOSQL
