@@ -70,7 +70,7 @@ services:
   postgrest:
     # build:
     #   context: ./.config/postgrest
-    image: postgrest/postgrest:v10.0.0
+    image: postgrest/postgrest:v10.1.1
     container_name: {{cookiecutter.project_slug}}_postgrest
     env_file:
       - ./.config/postgrest/postgrest.env
