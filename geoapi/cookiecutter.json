@@ -8,8 +8,8 @@
     "postgres_primary_user": "duck",
     "postgres_primary_password": "quack",
     "postgres_primary_db": "geo",
-    "pgadmin_default_email": "{{postgres_primary_user}}@{{postgres_primary_user}}.com",
-    "pgadmin_default_password": "{{postgres_primary_password}}",
+    "pgadmin_default_email": "{{cookiecutter.postgres_primary_user}}@{{cookiecutter.postgres_primary_user}}.com",
+    "pgadmin_default_password": "{{cookiecutter.postgres_primary_password}}",
     "postgrest_authenticator_role": "authenticator",
     "postgrest_authenticator_password": "supersecretauthenticatorpassword",
     "postgrest_anonymous_role": "anonymous"
